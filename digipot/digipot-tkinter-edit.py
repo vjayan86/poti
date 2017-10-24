@@ -170,41 +170,7 @@ class MyPoti(Tkinter.Tk):
             self.alabels[i].config(text=str("values"))
 
        #Input validation for resistence text field
-    def check_res(self):
-        print("Greetings!")
-
-    def start_app(self):
-        """ 
-        Start the application when start button pressed
-        """
-        #Disable start button after presed
-        global running
-        self.running = True
-        #self.start_button.config(state="disabled")
-        self.clear_button.config(state="normal")
-        print "Starting app!"
-                #call update values function
-        self.update_values()
-
-    def clear_app(self):
-        """
-        Clear the answer lable fields
-        """
-        print "Clear"
-        global running
-        self.running = False
-        self.start_button.config(state="normal")
-        self.clear_button.config(state="disabled")
-        for i in range(5):
-            self.alabels[i].config(text=str("values"))
-
-                #Clear the text fields and set default vaule
-        self.entry_pot_var.set("Enter Pot selection")
-        self.entry_res_var.set("Enter resistor value - 2000 to 100000")
-
-                #set keyboard focus
-        self.entry_pot.focus_set()
-
+   
     def stop_app(self):
         """
         Stop the app
@@ -216,10 +182,7 @@ class MyPoti(Tkinter.Tk):
         """
         Helper function to trigger label values after reading pot and res values
         """
-        #if self.running:
-        #    self.after(1000, self.update_values)
-
-                #Read input value given for pot selection text field
+                      #Read input value given for pot selection text field
         pot = self.entry_pot.get()
         #if pot < 0 or pot > 4 :
         if int(pot) < 0 or int(pot) > 4 :
@@ -232,32 +195,6 @@ class MyPoti(Tkinter.Tk):
 
                 #set keyboard focus
         self.entry_pot.focus_set()
-
-    def stop_app(self):
-        """
-        Stop the app
-        """
-        print "Stopping"
-        self.quit()
-
-    def update_values(self):
-        """
-        Helper function to trigger label values after reading pot and res values
-        """
-        #if self.running:
-        #    self.after(1000, self.update_values)
-
-                #Read input value given for pot selection text field
-        pot = self.entry_pot.get()
-        #if pot < 0 or pot > 4 :
-        if int(pot) < 0 or int(pot) > 4 :
-                tkMessageBox.showerror("wrong input","wrong input, pot selection must be 0-4, current selection: %s" % pot)
-                return
-        res = self.entry_res.get()
-
-
-                #Read input value given for  resistence text field
-        res = self.entry_res.get()
 
                 #call update text value function which converts values and send data to MCP
         self.update_text_values(pot, res)
@@ -275,10 +212,6 @@ class MyPoti(Tkinter.Tk):
         lev = float((rw * byte) / local_pot)
         level =round(lev)
         level = int(level)
-        #level = int(res) - int(local_res)
-        #level = float(res) - int(local_res)
-        #level = (level * byte) / local_pot
-        #level = int(level)
         print(level)
         b = 0
         if int(pot) == 0:    
